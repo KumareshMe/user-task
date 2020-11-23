@@ -1,0 +1,8 @@
+<h1>Showing Task Details</h1>
+
+<p><strong>Title: </strong><%= @task.title %></p>
+<p><strong>Description: </strong><%= @task.description %></p>
+
+<td><%= link_to "Edit", edit_task_path(@task) %></td>
+<td><%= link_to "Delete", task_path(@task), method: :delete, data:{ confirm: "Are you sure to delete?"} %></td>
+<td><%= link_to "Return to articles listing", tasks_path %></td>
