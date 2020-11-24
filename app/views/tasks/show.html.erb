@@ -1,8 +1,24 @@
-<h1>Showing Task Details</h1>
+<h2 class="text-center mt-3"><%= @task.title %></h1>
 
-<p><strong>Title: </strong><%= @task.title %></p>
-<p><strong>Description: </strong><%= @task.description %></p>
+   <div class="container">
+     <div class="row justify-content-md-center">
+    <div class="col-8 mt-4">
+      <div class="card text-center">
+        <div class="card-header font-italic">
+          By Kumaresh
+        </div>
+        <div class="card-body">
+          <div class="card-text"><%= simple_format(@task.description) %></div>
+          <%= link_to "Edit", edit_task_path(@task), class: "btn btn-outline-info" %>
+          <%= link_to "Delete", task_path(@task), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure you want to delete" } %>
+        </div>
+        <div class="card-footer text-muted">
+          <small>Created <%= time_ago_in_words(@task.created_at) %> ago
+          edited <%= time_ago_in_words(@task.updated_at) %>ago </small>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
 
-<td><%= link_to "Edit", edit_task_path(@task) %></td>
-<td><%= link_to "Delete", task_path(@task), method: :delete, data:{ confirm: "Are you sure to delete?"} %></td>
-<td><%= link_to "Return to articles listing", tasks_path %></td>
+  
