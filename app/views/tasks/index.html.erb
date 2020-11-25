@@ -1,3 +1,8 @@
 <h1 class="text-center mt-3">Listing all Tasks</h1>
-
+    <div class="flickr_pagination">
+        <%= will_paginate @tasks, :container => false %>
+    </div>
 <%= render 'task' %>
+    <div class="flickr_pagination mb-4">
+        <%= will_paginate @tasks, :container => false %>
+    </div>
