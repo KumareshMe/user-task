@@ -33,3 +33,5 @@
       </form>
     </div>
 </nav>
+
+<h5 class="card-title"><%= link_to user.username, user, class: "text-success" %></h5>
