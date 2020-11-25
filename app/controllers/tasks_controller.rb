@@ -58,6 +58,6 @@ class TasksController < ApplicationController
       flash[:alert] = "You can only edit or delete your own task"
       redirect_to @task
       end
-      end 
+    end 
 
 end
