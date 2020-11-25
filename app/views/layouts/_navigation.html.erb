@@ -7,21 +7,18 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <%= link_to "Tasks", users_path, class: "nav-link" %>
+          <%= link_to "USERS", users_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Task
+            TASK
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <% if logged_in? %>
               <%= link_to "Create New Task", new_task_path, class: "dropdown-item" %>
               <% end %>
               <%= link_to "View Task", tasks_path, class: "dropdown-item" %>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
+            </li>
         <% if logged_in? %>
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,21 +30,16 @@
                 <%= link_to "Delete your profile", user_path(current_user), class: "dropdown-item text-danger", method: :delete, data: { confirm: "Are you sure?" } %>
         </li>
           <li class="nav-item">
-              <%= link_to 'Logout', logout_path, class: "nav-link", method: :delete %>
+              <%= link_to 'LOGOUT', logout_path, class: "nav-link", method: :delete %>
           </li>
           <% else %>
           <li class="nav-item">
-              <%= link_to 'Login', login_path, class: "nav-link" %>
+              <%= link_to 'LOGIN', login_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-              <%= link_to 'Sign Up', signup_path, class: "nav-link" %>
+              <%= link_to 'SIGN UP', signup_path, class: "nav-link" %>
           </li>
         <% end %>
-        
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
     </div>
 </nav>
