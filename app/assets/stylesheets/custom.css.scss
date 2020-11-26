@@ -17,16 +17,12 @@
    font-weight: bold; 
 }
 
-#home-container {
-    margin-top: 25px;
-}
-
 .jumbotron  {
     background-image: asset-url("12.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 550px;
+    height: 690px;
 }
 
 html,
@@ -50,14 +46,14 @@ flickr_pagination {
   .flickr_pagination a, .flickr_pagination span, .flickr_pagination em {
     padding: 0.2em 0.5em; }
   .flickr_pagination .disabled {
-    color: #aaaaaa; }
+    color: black; }
   .flickr_pagination .current {
     font-style: normal;
     font-weight: bold;
     color: #ff0084; }
   .flickr_pagination a {
-    border: 1px solid #dddddd;
-    color: #0063dc;
+    border: 1px solid black;
+    color: black;
     text-decoration: none; }
     .flickr_pagination a:hover, .flickr_pagination a:focus {
       border-color: #003366;

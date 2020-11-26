@@ -1,29 +1,38 @@
 <div class="container">
   <% @tasks.each do |task| %>
     <div class="row justify-content-md-center">
-    <div class="col-8 mt-4">
-      <div class="card text-center">
-        <div class="card-header font-italic">
-        <% if task.user %>
-          by <%= link_to task.user.username, user_path(task.user) %>
-          <% end %> 
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"><%= link_to task.title, task_path(task), class: "text-success" %></h5>
-          <p class="card-text"><%= truncate(task.description, length: 100) %></p>
-          <%= link_to "View", task_path(task), class: "btn btn-outline-success" %>
-          <% if logged_in? && (task.user == current_user || current_user.admin?) %>
-          <%= link_to "Edit", edit_task_path(task), class: "btn btn-outline-info" %>
-          <%= link_to "Delete", task_path(task), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure you want to delete" } %></br></br>
-          <%= link_to "Mark as Complete", complete_task_path(task), method: :patch %>
-          <% end %>
-        </div>
-        <div class="card-footer text-muted">
-          <small>Created <%= time_ago_in_words(task.created_at) %> ago
-          edited <%= time_ago_in_words(task.updated_at) %>ago </small>
+      <div class="col-8 mt-4">
+        <div class="card text-center">
+          <div class="card-header font-italic">
+           <% if task.user %>
+            by <%= link_to task.user.username, user_path(task.user) %>
+           <% end %> 
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to task.title, task_path(task), class: "text-success" %></h5>
+            <p class="card-text"><%= truncate(task.description, length: 100) %></p>
+            <%= link_to "View", task_path(task), class: "btn btn-outline-success" %>
+              <% if logged_in? && (task.user == current_user || current_user.admin?) %>
+                <%= link_to "Edit", edit_task_path(task), class: "btn btn-outline-info" %>
+                <%= link_to "Delete", task_path(task), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure you want to delete" } %></br></br>
+              
+                <% if task.completed? %>
+                  <h3>Congratulations you have completed your <%= task.title %></h3>
+                <% else %>
+                  <h3>You have not completed your <%= task.title %></h3>
+                  <%= link_to "Mark as Complete", complete_task_path(task), class: "btn btn-outline-success", method: :patch %>
+                <% end %>  
+
+              <% end %>
+          </div>
+
+          <div class="card-footer text-muted">
+            <small>Created Task <%= time_ago_in_words(task.created_at) %> ago: 
+            :Completed Task <%= time_ago_in_words(task.updated_at) %> ago </small>
+          </div>
+
         </div>
       </div>
-    </div>
     </div>
   <% end %>
   <div class="mb-4">

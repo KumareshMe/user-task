@@ -2,53 +2,53 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :require_user, except: [:show, :index]
   before_action :require_same_user, only: [:edit, :update, :destroy]
-    
-  
-    def show
-    end
+      
+  def show
+  end
 
-    def index
-      @tasks = Task.paginate(page: params[:page], per_page: 3)
-    end
+  def index
+    @tasks = Task.paginate(page: params[:page], per_page: 4)
+  end
 
-    def new
-     @task = Task.new
-    end
+  def new
+    @task = Task.new
+  end
 
-    def create
-      @task = Task.new(task_params)
-      @task.user = current_user
-      if @task.save
-        flash[:notice] ="Task was created successfully."
-        redirect_to @task
-      else
-        render 'new'
-      end
-    end
-
-    def edit
-    end
-
-    def update
-      if @task.update(task_params)
-        flash[:notice] ="Task was updated successfully."
-        redirect_to @task
-      else
-        render 'edit'
-      end
-    end
- 
-    def destroy
-      @task.destroy
-      redirect_to tasks_path
-    end
-
-    def complete
-      @task = Task.find(params[:id])
-      @task.update_attribute(:completed_at, Time.now)
+  def create
+    @task = Task.new(task_params)
+    @task.user = current_user
+    if @task.save
+      flash[:notice] ="Task was created successfully."
       redirect_to @task
-      flash[:notice] = "Hey you have completed a Task"
+    else
+      render 'new'
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @task.update(task_params)
+      flash[:notice] ="Task was updated successfully."
+      redirect_to @task
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @task.destroy
+    redirect_to tasks_path
+  end
+
+  def complete
+    @task = Task.find(params[:id])
+    @task.completed_at = DateTime.now()
+    @task.save!
+    redirect_to @task
+    flash[:notice] = "Hey you have completed a Task"
+  end
     
   private
     def set_task
@@ -61,9 +61,8 @@ class TasksController < ApplicationController
 
     def require_same_user
       if current_user != @task.user && !current_user.admin?
-      flash[:alert] = "You can only edit or delete your own task"
-      redirect_to @task
+        flash[:alert] = "You can only edit or delete your own task"
+        redirect_to @task
       end
     end 
-
 end

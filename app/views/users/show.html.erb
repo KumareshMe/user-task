@@ -1,20 +1,9 @@
-<h1 class="text-center mt-4"><%= @user.username %>'s profile </h1>
+<h1 class="text-center mt-4"><%= @user.username %> profile </h1>
 
-<% if logged_in? && @user == current_user %>
-<div class="text-center mt-4">
-<%= link_to "Edit Your Profile", edit_user_path(@user), class: "btn btn-outline-info" %>
-<% end %>
-
-</div>
-
-<h3 class="text-center mt-4">Tasks</h3>
-
-    <div class="flickr_pagination">
-        <%= will_paginate @tasks, :container => false %>
-    </div>
+<h2 class="text-center mt-4">Assigned Tasks</h2>
 
 <%= render 'tasks/task' %>
 
-    <div class="flickr_pagination mb-4">
-        <%= will_paginate @tasks, :container => false %>
-    </div>
+<div class="flickr_pagination mb-4">
+  <%= will_paginate @tasks, :container => false %>
+</div>
