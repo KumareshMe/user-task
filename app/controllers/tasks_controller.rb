@@ -39,11 +39,17 @@ class TasksController < ApplicationController
     end
  
     def destroy
-      
       @task.destroy
       redirect_to tasks_path
     end
 
+    def complete
+      @task = Task.find(params[:id])
+      @task.update_attribute(:completed_at, Time.now)
+      redirect_to @task
+      flash[:notice] = "Hey you have completed a Task"
+    end
+    
   private
     def set_task
       @task = Task.find(params[:id])
