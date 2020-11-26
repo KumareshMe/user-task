@@ -14,7 +14,8 @@
           <%= link_to "View", task_path(task), class: "btn btn-outline-success" %>
           <% if logged_in? && (task.user == current_user || current_user.admin?) %>
           <%= link_to "Edit", edit_task_path(task), class: "btn btn-outline-info" %>
-          <%= link_to "Delete", task_path(task), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure you want to delete" } %>
+          <%= link_to "Delete", task_path(task), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure you want to delete" } %></br></br>
+          <%= link_to "Mark as Complete", complete_task_path(task), method: :patch %>
           <% end %>
         </div>
         <div class="card-footer text-muted">
