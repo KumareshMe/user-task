@@ -2,6 +2,10 @@ require "rails_helper"
 
 RSpec.describe Task, type: :model do
 
+  describe "Associations" do
+    it { should belong_to(:user) }
+  end
+
 	describe "validations" do
 
 		it "title and description should be present" do
@@ -58,8 +62,8 @@ RSpec.describe Task, type: :model do
       user = User.create!(username: "blue", email: "blue@gmail.com", password: "passwordblue")
       subject = Task.new(title: "testing", description: "hello testing", user_id: user.id)
       subject.save
-      subject2 = Task.new(title: "testing", description: "hello testing1", user_id: user.id)
-      expect(subject2).not_to be_valid
+      subject2 = Task.new(title: "Testing", description: "hello testing1", user_id: user.id)
+      expect(subject2).to be_valid
     end
     
     it "description should be unique" do
